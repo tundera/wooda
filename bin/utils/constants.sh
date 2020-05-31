@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CORE_CMD_NAME="bam"
+USR_BIN="/usr/local/bin"
+COMMON_NAME="bam.com.vm"
+TOP_LEVEL_DOMAIN="vm"
+DNS_PORT=53535
+DNS_CONTAINER_NAME="${TOP_LEVEL_DOMAIN}-dnsmasq" 
+RESOLVER_DIR="/etc/resolver"
+RESOLVER_FILE="$RESOLVER_DIR/$TOP_LEVEL_DOMAIN"

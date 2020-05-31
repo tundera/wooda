@@ -1,0 +1,40 @@
+overwrite: true
+schema: './../server/src/graphql/schemas/schema.graphql'
+documents: 'src/**/*.graphql'
+hooks:
+  afterAllFileWrite:
+    - eslint --fix --config .eslintrc.json
+    - prettier --write --config .prettierrc.json
+generates:
+  src/__generated__/types.ts:
+    plugins:
+      - add: '/* eslint-disable */'
+      - 'typescript'
+    config:
+      enumsAsTypes: true
+      nonOptionalTypename: true
+      scalars:
+        DateTime: string
+
+  src/__generated__/operations.d.ts:
+    documents: src/pages/**/*.graphql
+    plugins:
+      - typescript-graphql-files-modules
+
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: __generated__/types.ts
+      extension: .generated.tsx
+    plugins:
+      - add: '/* eslint-disable */'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      enumsAsTypes: true
+      nonOptionalTypename: true
+      documentMode: external
+      importDocumentNodeExternallyFrom: near-operation-file
+      withHooks: true
+      withHOC: false
+      withComponent: false

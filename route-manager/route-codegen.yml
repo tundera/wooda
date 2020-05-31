@@ -1,0 +1,46 @@
+apps:
+  client:
+    routes:
+      login: /app/login
+      signup: /app/signup
+      logout: /app/logout
+      me: /app/me
+    routingType: ReactRouterV5
+    reactRouterV5LinkOptions:
+      importCustomLink:
+        componentDefaultImport: true
+        propsNamedImport: LinkProps
+        hrefProp: to
+        from: common/components/Link
+    defaultLinkOptions:
+      importCustomLink:
+        componentDefaultImport: true
+        propsNamedImport: AnchorProps
+        hrefProp: href
+        from: common/shared-ui/Anchor
+    destinationDir: ../client/src/routes
+
+  client-seo:
+    routes:
+      home: /
+    routingType: NextJS
+    nextJSLinkOptions:
+      importCustomLink:
+        componentDefaultImport: true
+        propsNamedImport: LinkProps
+        hrefProp: href
+        from: common/components/Link
+    defaultLinkOptions:
+      importCustomLink:
+        componentDefaultImport: true
+        propsNamedImport: AnchorProps
+        hrefProp: href
+        from: common/shared-ui/Anchor
+    destinationDir: ../client-seo/src/routes
+
+  server:
+    generateLinkComponent: false
+    generateRedirectComponent: false
+    generateUseParams: false
+    generateUseRedirect: false
+    destinationDir: ../server/src/routes
